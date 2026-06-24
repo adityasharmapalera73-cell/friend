@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Message ✨</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #bc1a5a, #67032f);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Container for Javascript Flying Hearts */
+        #hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Flying Heart Styling */
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 24px;
+            opacity: 0;
+            animation: moveUp 6s linear infinite;
+            user-select: none;
+        }
+
+        @keyframes moveUp {
+            0% {
+                bottom: -50px;
+                opacity: 0;
+                transform: translateX(0) scale(0.7);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                bottom: 105%;
+                opacity: 0;
+                transform: translateX(50px) scale(1.2);
+            }
+        }
+
+        /* Glassmorphism Center Card */
+        .main-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 35px 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            max-width: 440px;
+            width: 100%;
+            z-index: 10;
+        }
+
+        /* Multipage Setup Classes */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+
+        .icon-header {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 30px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #ffdce8;
+        }
+
+        /* Feature Box */
+        .feature-box {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px 20px;
+            border-radius: 12px;
+            text-align: left;
+            margin-bottom: 25px;
+            border-left: 4px solid #ff4081;
+        }
+
+        .feature-box h3 {
+            color: #ff85af;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .feature-box ul {
+            list-style: none;
+        }
+
+        .feature-box li {
+            font-size: 15px;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        /* Interactive Section */
+        .interactive-zone {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .question {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            min-height: 55px;
+            position: relative;
+        }
+
+        .action-btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-accept {
+            background: #ffffff;
+            color: #bc1a5a;
+        }
+
+        .btn-accept:hover {
+            background: #ff4081;
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        .btn-reject {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-next {
+            background: #ffffff;
+            color: #bc1a5a;
+            width: 100%;
+        }
+
+        .btn-next:hover {
+            background: #ff4081;
+            color: #ffffff;
+        }
+
+        #success-message {
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            display: none;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="hearts-background"></div>
+
+    <div class="main-card">
+        
+        <div id="page-msg" class="page active">
+            <div class="icon-header">💝✨</div>
+            
+            <h1>Hey Bhumiii!</h1>
+            
+            <p>Aap jaisa dost milna sach me bohot mushkil hai! Maine yeh chota sa surprise sirf aapko smile karwane ke liye banaya hai😁. Hope it brings a smile! 😊</p>
+            
+            <div class="feature-box">
+                <h3>Why you are awesome:</h3>
+                <ul>
+                    <li>✨ Aapki baatein hamesha best hoti hain.</li>
+                    <li>✨ Aapki vibe bilkul positive aur amazing hai!</li>
+                    <li>✨ Hamesha support karne ke liye thank you!</li>
+                    <li>✨ Ap bhut achhi ho bhumii reallyy😁!</li>
+                </ul>
+            </div>
+            
+            <div class="buttons-container">
+                <button class="action-btn btn-next" onclick="showNextPage()">Click For A Surprise! 👉</button>
+            </div>
+        </div>
+
+        <div id="page-question" class="page">
+            <div class="icon-header">🥺👉👈</div>
+            
+            <div class="interactive-zone">
+                <div class="question" id="question-text">Kya Meri Friend Banogi? 🥺❤️</div>
+                
+                <div class="buttons-container" id="btn-wrapper">
+                    <button class="action-btn btn-accept" onclick="handleYes()">Haan! 💕</button>
+                    <button class="action-btn btn-reject" id="noButton" onmouseover="teleportNoButton()" onclick="teleportNoButton()">Nahi 😜</button>
+                </div>
+                
+                <div id="success-message">Yayyy! 🎉 Best Friends Forever! ♾️❤️</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const bgContainer = document.getElementById('hearts-background');
+        const heartIcons = ['❤️', '💖', '💝', '💕'];
+        
+        function spawnHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            
+            heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            
+            bgContainer.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        setInterval(spawnHeart, 300);
+
+        function showNextPage() {
+            document.getElementById('page-msg').classList.remove('active');
+            document.getElementById('page-question').classList.add('active');
+        }
+
+        function handleYes() {
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('btn-wrapper').style.display = 'none';
+            document.getElementById('question-text').innerText = "Thank You Bhumiii! 🤗";
+            
+            for (let i = 0; i < 40; i++) {
+                setTimeout(spawnHeart, i * 50);
+            }
+        }
+
+        function teleportNoButton() {
+            const btn = document.getElementById('noButton');
+            
+            const maxX = window.innerWidth - btn.offsetWidth - 40;
+            const maxY = window.innerHeight - btn.offsetHeight - 40;
+            
+            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+            
+            btn.style.position = 'fixed';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>
